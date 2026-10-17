@@ -11,7 +11,7 @@ const variants = {
   danger: 'bg-danger text-bg hover:opacity-90 active:opacity-80',
 }
 
-const sizes = { md: 'h-12 px-6 text-base', sm: 'h-10 px-4 text-sm' }
+const sizes = { md: 'h-12 px-6 text-base', sm: 'h-12 px-4 text-sm' }
 
 export default function Button({
   to,

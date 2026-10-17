@@ -18,3 +18,9 @@ export function getFieldErrors(error) {
       .map(([k, v]) => [k, Array.isArray(v) ? v.join(' ') : v]),
   )
 }
+
+// toast-এর জন্য এক লাইনের সারাংশ: প্রথম field error, না থাকলে সাধারণ বার্তা
+export function getErrorSummary(error) {
+  const first = Object.values(getFieldErrors(error))[0]
+  return first || getErrorMessage(error)
+}
