@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import PublicLayout from '../components/layout/PublicLayout'
 import About from '../pages/About'
 import Blog from '../pages/Blog'
 import BlogDetail from '../pages/BlogDetail'
@@ -13,14 +14,16 @@ import ProtectedRoute from './ProtectedRoute'
 export default function AppRoutes() {
   return (
     <Routes>
-      {/* Public */}
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/projects" element={<Projects />} />
-      <Route path="/projects/:slug" element={<ProjectDetail />} />
-      <Route path="/blog" element={<Blog />} />
-      <Route path="/blog/:slug" element={<BlogDetail />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogDetail />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
 
       {/* কোথাও লিংক নেই, শুধু URL টাইপ করে যাওয়া যায় */}
       <Route path="/login" element={<Login />} />
@@ -29,8 +32,6 @@ export default function AppRoutes() {
       <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<div className="container-page section">Dashboard</div>} />
       </Route>
-
-      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
