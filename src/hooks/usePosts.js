@@ -16,3 +16,10 @@ export const useCategories = () =>
   useQuery({ queryKey: ['categories'], queryFn: () => categoriesApi.list() })
 
 export const useTags = () => useQuery({ queryKey: ['tags'], queryFn: () => tagsApi.list() })
+
+export const useComments = (slug, page) =>
+  useQuery({
+    queryKey: ['comments', slug, page],
+    queryFn: () => postsApi.comments(slug, { page }),
+    placeholderData: keepPreviousData,
+  })
