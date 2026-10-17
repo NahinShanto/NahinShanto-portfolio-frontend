@@ -11,7 +11,7 @@ import { ThemeProvider } from './context/ThemeContext.jsx'
 const queryClient = new QueryClient({
   defaultOptions: {
     // 60 সেকেন্ড cache, আর window focus-এ refetch বন্ধ: backend-এর anonymous throttle (20/min) বাঁচাতে
-    queries: { staleTime: 60_000, retry: 1, refetchOnWindowFocus: false },
+    queries: { staleTime: 5 * 60_000, retry: 1, refetchOnWindowFocus: false },
   },
 })
 

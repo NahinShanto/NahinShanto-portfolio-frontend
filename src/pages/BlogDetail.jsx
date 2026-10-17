@@ -26,7 +26,7 @@ export default function BlogDetail() {
   const { isOwner } = useAuth()
   const post = query.data
 
-  usePageTitle(post ? `${post.title}${profile ? ` | ${profile.full_name}` : ''}` : 'Blog')
+ usePageTitle(post ? `${post.title}${profile ? ` | ${profile.full_name}` : ''}` : 'Blog', post?.excerpt)
 
   if (query.isLoading) {
     return (

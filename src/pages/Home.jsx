@@ -7,10 +7,14 @@ import LatestPosts from '../components/home/LatestPosts'
 import SkillGrid from '../components/home/SkillGrid'
 import { useProfile } from '../hooks/useProfile'
 import usePageTitle from '../hooks/usePageTitle'
+import { shorten } from '../utils/text'
 
 export default function Home() {
   const { data: profile } = useProfile()
-  usePageTitle(profile ? `${profile.full_name} | ${profile.headline}` : 'Portfolio')
+  usePageTitle(
+    profile ? `${profile.full_name} | ${profile.headline}` : 'Portfolio',
+    profile ? shorten(profile.bio, 155) : undefined,
+  )
 
   return (
     <>
