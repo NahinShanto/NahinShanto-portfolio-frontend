@@ -1,0 +1,31 @@
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Toaster } from 'react-hot-toast'
+import './styles/index.css'
+import App from './App.jsx'
+import { AuthProvider } from './context/AuthContext.jsx'
+import { ThemeProvider } from './context/ThemeContext.jsx'
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    // 60 সেকেন্ড cache, আর window focus-এ refetch বন্ধ: backend-এর anonymous throttle (20/min) বাঁচাতে
+    queries: { staleTime: 60_000, retry: 1, refetchOnWindowFocus: false },
+  },
+})
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ThemeProvider>
+          <AuthProvider>
+            <App />
+            <Toaster position="top-right" />
+          </AuthProvider>
+        </ThemeProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
+  </StrictMode>,
+)
